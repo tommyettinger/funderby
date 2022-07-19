@@ -1,6 +1,5 @@
-# Library Template using libGDX and Gradle 7.x
+# funderby
 
-Change this to fit your library!
+Java 8+ functional interfaces for primitive types, based on Eclipse-Collections.
 
-You'll want to edit gradle.properties to match your library's name, description, author, license, and so on.
-You probably also want to edit build.gradle to match the projectName and group to what you want to use.
+Licensed under the same license as Eclipse-Collections, the EPL v 1.0 and the EDL v 1.0 .
