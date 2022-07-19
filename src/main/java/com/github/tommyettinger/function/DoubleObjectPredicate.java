@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * A two argument Predicate that takes a primitive double and
  * type T as the arguments.
- * This file was automatically generated from template file primitiveObjectPredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface DoubleObjectPredicate<T> {
-    boolean accept(double value, T object);
+    boolean test(double value, T object);
 }

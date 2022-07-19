@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * A two argument Predicate that takes a primitive float and
  * type T as the arguments.
- * This file was automatically generated from template file primitiveObjectPredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface FloatObjectPredicate<T> {
-    boolean accept(float value, T object);
+    boolean test(float value, T object);
 }

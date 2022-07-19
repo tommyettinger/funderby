@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * FloatPredicate is a primitive Predicate which may be used to reduce the overhead
  * of autoboxing Float objects in places where primitive floats could be used.
- * This file was automatically generated from template file primitivePredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface FloatPredicate {
-    boolean accept(float value);
+    boolean test(float value);
 }

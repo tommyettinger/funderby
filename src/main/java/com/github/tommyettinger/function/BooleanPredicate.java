@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * BooleanPredicate is a primitive Predicate which may be used to reduce the overhead
  * of autoboxing Boolean objects in places where primitive booleans could be used.
- * This file was automatically generated from template file primitivePredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface BooleanPredicate {
-    boolean accept(boolean value);
+    boolean test(boolean value);
 }

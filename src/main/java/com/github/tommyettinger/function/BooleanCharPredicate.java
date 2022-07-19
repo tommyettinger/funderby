@@ -11,9 +11,9 @@
 package com.github.tommyettinger.function;
 
 /**
- * This file was automatically generated from template file primitivePrimitivePredicate.stg.
-  */
+ * A two argument Predicate that takes a primitive boolean and a primitive char as arguments.
+ */
 @FunctionalInterface
 public interface BooleanCharPredicate {
-    boolean accept(boolean value1, char value2);
+    boolean test(boolean value1, char value2);
 }

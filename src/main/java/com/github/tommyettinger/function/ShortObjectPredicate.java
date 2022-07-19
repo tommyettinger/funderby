@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * A two argument Predicate that takes a primitive short and
  * type T as the arguments.
- * This file was automatically generated from template file primitiveObjectPredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface ShortObjectPredicate<T> {
-    boolean accept(short value, T object);
+    boolean test(short value, T object);
 }

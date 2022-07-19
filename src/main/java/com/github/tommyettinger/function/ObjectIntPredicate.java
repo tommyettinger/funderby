@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * A two argument Predicate that takes type T and
  * a primitive int as the arguments.
- * This file was automatically generated from template file objectPrimitivePredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface ObjectIntPredicate<T> {
-    boolean accept(T object, int value);
+    boolean test(T object, int value);
 }

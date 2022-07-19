@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * A two argument Predicate that takes a primitive boolean and
  * type T as the arguments.
- * This file was automatically generated from template file primitiveObjectPredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface BooleanObjectPredicate<T> {
-    boolean accept(boolean value, T object);
+    boolean test(boolean value, T object);
 }

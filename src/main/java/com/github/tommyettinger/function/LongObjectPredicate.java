@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * A two argument Predicate that takes a primitive long and
  * type T as the arguments.
- * This file was automatically generated from template file primitiveObjectPredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface LongObjectPredicate<T> {
-    boolean accept(long value, T object);
+    boolean test(long value, T object);
 }

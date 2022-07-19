@@ -11,9 +11,9 @@
 package com.github.tommyettinger.function;
 
 /**
- * This file was automatically generated from template file primitivePrimitivePredicate.stg.
-  */
+ * A two argument Predicate that takes a primitive int and a primitive float as arguments.
+ */
 @FunctionalInterface
 public interface IntFloatPredicate {
-    boolean accept(int value1, float value2);
+    boolean test(int value1, float value2);
 }

@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * A two argument Predicate that takes type T and
  * a primitive byte as the arguments.
- * This file was automatically generated from template file objectPrimitivePredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface ObjectBytePredicate<T> {
-    boolean accept(T object, byte value);
+    boolean test(T object, byte value);
 }

@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * BytePredicate is a primitive Predicate which may be used to reduce the overhead
  * of autoboxing Byte objects in places where primitive bytes could be used.
- * This file was automatically generated from template file primitivePredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface BytePredicate {
-    boolean accept(byte value);
+    boolean test(byte value);
 }

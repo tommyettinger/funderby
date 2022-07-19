@@ -1,0 +1,17 @@
+This file was automatically generated from template file primitivePrimitivePredicate\.stg\.
+  \*\/
+\@FunctionalInterface
+public interface (\w+) \{
+    boolean test\((\w+) value1\, (\w+) value2\)\;
+\}
+
+A two argument Predicate that takes a primitive $2 and a primitive $3 as arguments.
+ \*\/
+\@FunctionalInterface
+public interface $1 \{
+    boolean test\($2 value1\, $3 value2\)\;
+\}
+
+
+
+

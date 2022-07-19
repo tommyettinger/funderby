@@ -11,9 +11,9 @@
 package com.github.tommyettinger.function;
 
 /**
- * This file was automatically generated from template file primitivePrimitivePredicate.stg.
-  */
+ * A two argument Predicate that takes a primitive byte and a primitive short as arguments.
+ */
 @FunctionalInterface
 public interface ByteShortPredicate {
-    boolean accept(byte value1, short value2);
+    boolean test(byte value1, short value2);
 }

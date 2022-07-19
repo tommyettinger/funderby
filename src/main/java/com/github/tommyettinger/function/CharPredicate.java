@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * CharPredicate is a primitive Predicate which may be used to reduce the overhead
  * of autoboxing Character objects in places where primitive chars could be used.
- * This file was automatically generated from template file primitivePredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface CharPredicate {
-    boolean accept(char value);
+    boolean test(char value);
 }

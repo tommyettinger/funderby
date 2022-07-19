@@ -13,9 +13,8 @@ package com.github.tommyettinger.function;
 /**
  * ShortPredicate is a primitive Predicate which may be used to reduce the overhead
  * of autoboxing Short objects in places where primitive shorts could be used.
- * This file was automatically generated from template file primitivePredicate.stg.
-  */
+ */
 @FunctionalInterface
 public interface ShortPredicate {
-    boolean accept(short value);
+    boolean test(short value);
 }
