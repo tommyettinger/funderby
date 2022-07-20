@@ -52,16 +52,23 @@ public class FunctionGenerator {
         String packageName = "com.github.tommyettinger.function";
         for(TypeName arg0 : TYPES){
             LinkedHashMap<TypeName, Class<?>> outerEx = EXISTING_FUNCTIONS.get(arg0);
-            for(TypeName ret : TYPES) {
+            for(TypeName retType : TYPES) {
+                TypeName ret, fst = arg0;
                 ArrayDeque<TypeVariableName> generics = new ArrayDeque<>(2);
-                if(!arg0.isPrimitive())
+                if(!arg0.isPrimitive()) {
                     generics.addLast(TypeVariableName.get("T"));
-                else if(!ret.isPrimitive())
+                    fst = TypeVariableName.get("T");
+                }
+                else if(!retType.isPrimitive())
                     generics.addLast(TypeVariableName.get("R"));
+                if(!retType.isPrimitive())
+                    ret = generics.getLast();
+                else
+                    ret = retType;
                 Class<?> existing;
                 ClassName replacing;
                 if(outerEx != null) {
-                    existing = outerEx.get(ret);
+                    existing = outerEx.get(retType);
                 }
                 else {
                     existing = null;
@@ -89,17 +96,18 @@ public class FunctionGenerator {
                             "a {@code $2T}-valued result.\n" +
                             "\n" +
                             "<br>\n" +
-                            "This is a functional interface whose functional method is {@link #$3L($1T)}.",
-                            arg0, ret, RETURN_NAMES.get(ret)
+                            "This is a functional interface whose functional method is {@link #$3L($4T)}.",
+                            fst, ret, RETURN_NAMES.get(retType), arg0
                     );
                     JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
                             .writeTo(outPath);
                 }
-                else if(outerEx != null && existing == null){
+                else if(outerEx != null && existing != null){
                     // here we already have a well-named functional interface in the JDK; skip this.
+                    System.out.println(arg0 + " with " + retType + " already has a good interface." );
                 }
                 else {
-                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(ret) + "Function")
+                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(retType) + "Function")
                             .addModifiers(mods).addTypeVariables(generics);
                     tb.addAnnotation(FunctionalInterface.class);
                     tb.addJavadoc(
@@ -107,11 +115,11 @@ public class FunctionGenerator {
                                     "a {@code $2T}-valued result.\n" +
                                     "\n" +
                                     "<br>\n" +
-                                    "This is a functional interface whose functional method is {@link #$3L($1T)}.",
-                            arg0, ret, RETURN_NAMES.get(ret)
+                                    "This is a functional interface whose functional method is {@link #$3L($4T)}.",
+                            fst, ret, RETURN_NAMES.get(retType), arg0
                     );
-                    MethodSpec.Builder mb = MethodSpec.methodBuilder(RETURN_NAMES.get(ret))
-                            .addParameter(arg0, "value", emptyMods).addModifiers(interfaceMods).returns(ret);
+                    MethodSpec.Builder mb = MethodSpec.methodBuilder(RETURN_NAMES.get(retType))
+                            .addParameter(fst, "value", emptyMods).addModifiers(interfaceMods).returns(ret);
                     mb.addJavadoc("Applies this function to the given argument.\n" +
                             "\n" +
                             "@param value the function argument\n" +
