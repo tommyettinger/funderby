@@ -97,17 +97,16 @@ public class FunctionGenerator {
                     tb.addJavadoc(
                             "Represents an operation on a single {@code $1T}-valued operand that produces\n" +
                             "a {@code $2T}-valued result.\n" +
-                            "\n" +
                             "<br>\n" +
                             "This is a functional interface whose functional method is {@link #$3L($4T)}.",
-                            fst, ret, RETURN_NAMES.get(retType), arg0
+                            fst, ret, FUNCTION_RETURN_NAMES.get(retType), arg0
                     );
                     JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
                             .writeTo(outPath);
                 }
                 else if(outerEx != null && existing != null){
                     // here we already have a well-named functional interface in the JDK; skip this.
-                    System.out.println(arg0 + " with " + retType + " already has a good interface." );
+                    System.out.println(arg0 + " returning " + retType + " already has a good interface." );
                 }
                 else {
                     TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(retType) + "Function")
@@ -116,12 +115,11 @@ public class FunctionGenerator {
                     tb.addJavadoc(
                             "Represents an operation on a single {@code $1T}-valued operand that produces\n" +
                                     "a {@code $2T}-valued result.\n" +
-                                    "\n" +
                                     "<br>\n" +
                                     "This is a functional interface whose functional method is {@link #$3L($4T)}.",
-                            fst, ret, RETURN_NAMES.get(retType), arg0
+                            fst, ret, FUNCTION_RETURN_NAMES.get(retType), arg0
                     );
-                    MethodSpec.Builder mb = MethodSpec.methodBuilder(RETURN_NAMES.get(retType))
+                    MethodSpec.Builder mb = MethodSpec.methodBuilder(FUNCTION_RETURN_NAMES.get(retType))
                             .addParameter(fst, "value", emptyMods).addModifiers(interfaceMods).returns(ret);
                     mb.addJavadoc("Applies this function to the given argument.\n" +
                             "\n" +
