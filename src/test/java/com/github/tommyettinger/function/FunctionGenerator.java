@@ -55,20 +55,33 @@ public class FunctionGenerator {
                 ArrayDeque<TypeVariableName> generics = new ArrayDeque<>(2);
                 if(!arg0.isPrimitive())
                     generics.addLast(TypeVariableName.get("T"));
-                if(!ret.isPrimitive())
+                else if(!ret.isPrimitive())
                     generics.addLast(TypeVariableName.get("R"));
                 Class<?> existing;
-                if(outerEx != null) existing = outerEx.get(ret);
-                else existing = null;
+                ClassName replacing;
+                if(outerEx != null) {
+                    existing = outerEx.get(ret);
+                }
+                else {
+                    existing = null;
+                }
                 String rename;
                 if(existing != null) {
                     rename = NAME_CHANGES.get(existing);
+                    replacing = ClassName.get(existing);
                 }
-                else rename = null;
+                else {
+                    rename = null;
+                    replacing = null;
+                }
 
                 if(rename != null){
-                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(rename).addModifiers(mods).addTypeVariables(generics)
-                            .addSuperinterface(existing, true).addAnnotation(FunctionalInterface.class);
+                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(rename).addModifiers(mods).addTypeVariables(generics);
+                    if(!generics.isEmpty())
+                        tb.addSuperinterface(ParameterizedTypeName.get(replacing, generics.toArray(new TypeName[0])));
+                    else
+                        tb.addSuperinterface(existing);
+                    tb.addAnnotation(FunctionalInterface.class);
                     JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
                             .writeTo(Paths.get("src-gen/main/java"));
 
