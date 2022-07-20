@@ -65,6 +65,17 @@ public class GeneratorCommon {
             SHORT,   "Short",
             OBJECT,  "Object");
 
+    public static final LinkedHashMap<TypeName, String> RETURN_NAMES = map(
+            BOOLEAN, "applyAsBoolean",
+            BYTE,    "applyAsByte",
+            CHAR,    "applyAsChar",
+            DOUBLE,  "applyAsDouble",
+            FLOAT,   "applyAsFloat",
+            INT,     "applyAsInt",
+            LONG,    "applyAsLong",
+            SHORT,   "applyAsShort",
+            OBJECT,  "apply");
+
     public static final LinkedHashMap<TypeName, String> CODE_NAMES = map(
             BOOLEAN, "boolean",
             BYTE,    "byte",
@@ -74,5 +85,5 @@ public class GeneratorCommon {
             INT,     "int",
             LONG,    "long",
             SHORT,   "short",
-            OBJECT,  "T");
+            OBJECT,  "Object");
 }

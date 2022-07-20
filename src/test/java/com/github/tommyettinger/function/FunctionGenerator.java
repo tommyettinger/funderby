@@ -82,6 +82,14 @@ public class FunctionGenerator {
                     else
                         tb.addSuperinterface(existing);
                     tb.addAnnotation(FunctionalInterface.class);
+                    tb.addJavadoc(
+                            "Represents an operation on a single {@code $1T}-valued operand that produces\n" +
+                            "a {@code $2T}-valued result.\n" +
+                            "\n" +
+                            "<br>\n" +
+                            "This is a functional interface whose functional method is {@link #$3L($1T)}.",
+                            arg0, ret, GeneratorCommon.RETURN_NAMES.get(ret)
+                    );
                     JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
                             .writeTo(Paths.get("src-gen/main/java"));
 
