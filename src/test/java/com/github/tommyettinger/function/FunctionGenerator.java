@@ -3,15 +3,14 @@ package com.github.tommyettinger.function;
 import com.squareup.javapoet.*;
 
 import javax.lang.model.element.Modifier;
-import javax.lang.model.type.TypeMirror;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.LinkedHashMap;
 import java.util.function.*;
 
-import static com.github.tommyettinger.function.GeneratorCommon.TYPES;
-import static com.github.tommyettinger.function.GeneratorCommon.map;
+import static com.github.tommyettinger.function.GeneratorCommon.*;
 import static com.squareup.javapoet.TypeName.*;
 
 public class FunctionGenerator {
@@ -46,6 +45,8 @@ public class FunctionGenerator {
             UnaryOperator.class, "ObjectToSameFunction"
     );
     private static final Modifier[] mods = {Modifier.PUBLIC};
+    private static final Modifier[] emptyMods = {};
+    private static final Modifier[] interfaceMods = {Modifier.ABSTRACT, Modifier.PUBLIC};
 
     public static void main(String[] args) throws IOException {
         String packageName = "com.github.tommyettinger.function";
@@ -75,6 +76,7 @@ public class FunctionGenerator {
                     replacing = null;
                 }
 
+                Path outPath = Paths.get("src-gen/main/java");
                 if(rename != null){
                     TypeSpec.Builder tb = TypeSpec.interfaceBuilder(rename).addModifiers(mods).addTypeVariables(generics);
                     if(!generics.isEmpty())
@@ -88,10 +90,35 @@ public class FunctionGenerator {
                             "\n" +
                             "<br>\n" +
                             "This is a functional interface whose functional method is {@link #$3L($1T)}.",
-                            arg0, ret, GeneratorCommon.RETURN_NAMES.get(ret)
+                            arg0, ret, RETURN_NAMES.get(ret)
                     );
                     JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
-                            .writeTo(Paths.get("src-gen/main/java"));
+                            .writeTo(outPath);
+                }
+                else if(outerEx != null && existing == null){
+                    // here we already have a well-named functional interface in the JDK; skip this.
+                }
+                else {
+                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(ret) + "Function")
+                            .addModifiers(mods).addTypeVariables(generics);
+                    tb.addAnnotation(FunctionalInterface.class);
+                    tb.addJavadoc(
+                            "Represents an operation on a single {@code $1T}-valued operand that produces\n" +
+                                    "a {@code $2T}-valued result.\n" +
+                                    "\n" +
+                                    "<br>\n" +
+                                    "This is a functional interface whose functional method is {@link #$3L($1T)}.",
+                            arg0, ret, RETURN_NAMES.get(ret)
+                    );
+                    MethodSpec.Builder mb = MethodSpec.methodBuilder(RETURN_NAMES.get(ret))
+                            .addParameter(arg0, "value", emptyMods).addModifiers(interfaceMods).returns(ret);
+                    mb.addJavadoc("Applies this function to the given argument.\n" +
+                            "\n" +
+                            "@param value the function argument\n" +
+                            "@return the function result\n");
+                    tb.addMethod(mb.build());
+                    JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
+                            .writeTo(outPath);
 
                 }
             }
