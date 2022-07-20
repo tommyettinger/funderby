@@ -18,14 +18,6 @@ import java.io.Serializable;
  * @since 3.0.
  */
 @FunctionalInterface
-public interface LongToObjectFunction<V>
-        extends java.util.function.LongFunction<V>, Serializable
+public interface LongToObjectFunction<V> extends java.util.function.LongFunction<V>
 {
-    V valueOf(long longParameter);
-
-    @Override
-    default V apply(long parameter)
-    {
-        return this.valueOf(parameter);
-    }
 }

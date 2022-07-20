@@ -19,13 +19,6 @@ import java.io.Serializable;
  */
 @FunctionalInterface
 public interface IntToObjectFunction<V>
-        extends java.util.function.IntFunction<V>, Serializable
+        extends java.util.function.IntFunction<V>
 {
-    V valueOf(int intParameter);
-
-    @Override
-    default V apply(int parameter)
-    {
-        return this.valueOf(parameter);
-    }
 }

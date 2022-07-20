@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Goldman Sachs.
+ * Copyright (c) 2022 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,22 +10,15 @@
 
 package com.github.tommyettinger.function;
 
-import java.io.Serializable;
-
 /**
- * This file was automatically generated from template file primitiveToPrimitiveFunction.stg.
+ * A IntIntToObjectBiFunction is a two argument lambda or closure which takes a primitive int as the first and
+ * a primitive int as the second argument and returns an Object as the result.
+ * This file was automatically generated from template file primitivePrimitiveToObjectFunction.stg.
  *
- * @since 3.0.
+ * @since 9.0.
  */
 @FunctionalInterface
-public interface DoubleToLongFunction
-        extends java.util.function.DoubleToLongFunction, Serializable
+public interface IntIntToObjectBiFunction<T>
 {
-    long valueOf(double doubleParameter);
-
-    @Override
-    default long applyAsLong(double each)
-    {
-        return this.valueOf(each);
-    }
+    T value(int argument1, int argument2);
 }

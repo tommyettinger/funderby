@@ -11,14 +11,11 @@
 package com.github.tommyettinger.function;
 
 /**
- * A IntIntToObjectFunction is a two argument lambda or closure which takes a primitive int as the first and
- * a primitive int as the second argument and returns an Object as the result.
- * This file was automatically generated from template file primitivePrimitiveToObjectFunction.stg.
+ * This file was automatically generated from template file primitivePrimitiveToPrimitiveFunction.stg.
  *
- * @since 9.0.
+ * @since 10.0.
  */
 @FunctionalInterface
-public interface IntIntToObjectFunction<T>
+public interface IntIntToIntBiFunction extends java.util.function.IntBinaryOperator
 {
-    T value(int argument1, int argument2);
 }

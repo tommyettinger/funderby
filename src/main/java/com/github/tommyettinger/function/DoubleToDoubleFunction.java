@@ -19,13 +19,6 @@ import java.io.Serializable;
  */
 @FunctionalInterface
 public interface DoubleToDoubleFunction
-        extends java.util.function.DoubleUnaryOperator, Serializable
+        extends java.util.function.DoubleUnaryOperator
 {
-    double valueOf(double doubleParameter);
-
-    @Override
-    default double applyAsDouble(double each)
-    {
-        return this.valueOf(each);
-    }
 }

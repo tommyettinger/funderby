@@ -19,13 +19,6 @@ import java.io.Serializable;
  */
 @FunctionalInterface
 public interface LongLongToLongFunction
-        extends java.util.function.LongBinaryOperator, Serializable
+        extends java.util.function.LongBinaryOperator
 {
-    long valueOf(long left, long right);
-
-    @Override
-    default long applyAsLong(long left, long right)
-    {
-        return this.valueOf(left, right);
-    }
 }

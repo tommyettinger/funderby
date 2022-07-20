@@ -10,8 +10,6 @@
 
 package com.github.tommyettinger.function;
 
-import java.io.Serializable;
-
 /**
  * This file was automatically generated from template file primitivePrimitiveToPrimitiveFunction.stg.
  *
@@ -19,13 +17,6 @@ import java.io.Serializable;
  */
 @FunctionalInterface
 public interface DoubleDoubleToDoubleFunction
-        extends java.util.function.DoubleBinaryOperator, Serializable
+        extends java.util.function.DoubleBinaryOperator
 {
-    double valueOf(double left, double right);
-
-    @Override
-    default double applyAsDouble(double left, double right)
-    {
-        return this.valueOf(left, right);
-    }
 }

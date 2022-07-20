@@ -19,13 +19,6 @@ import java.io.Serializable;
  */
 @FunctionalInterface
 public interface LongToLongFunction
-        extends java.util.function.LongUnaryOperator, Serializable
+        extends java.util.function.LongUnaryOperator
 {
-    long valueOf(long longParameter);
-
-    @Override
-    default long applyAsLong(long each)
-    {
-        return this.valueOf(each);
-    }
 }

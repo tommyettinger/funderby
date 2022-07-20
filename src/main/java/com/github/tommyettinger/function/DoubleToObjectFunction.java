@@ -19,13 +19,6 @@ import java.io.Serializable;
  */
 @FunctionalInterface
 public interface DoubleToObjectFunction<V>
-        extends java.util.function.DoubleFunction<V>, Serializable
+        extends java.util.function.DoubleFunction<V>
 {
-    V valueOf(double doubleParameter);
-
-    @Override
-    default V apply(double parameter)
-    {
-        return this.valueOf(parameter);
-    }
 }

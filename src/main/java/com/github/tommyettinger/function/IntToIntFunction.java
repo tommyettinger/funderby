@@ -18,14 +18,6 @@ import java.io.Serializable;
  * @since 3.0.
  */
 @FunctionalInterface
-public interface IntToIntFunction
-        extends java.util.function.IntUnaryOperator, Serializable
+public interface IntToIntFunction extends java.util.function.IntUnaryOperator
 {
-    int valueOf(int intParameter);
-
-    @Override
-    default int applyAsInt(int each)
-    {
-        return this.valueOf(each);
-    }
 }
