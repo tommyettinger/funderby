@@ -9,5 +9,5 @@ import java.util.function.ToDoubleFunction;
  * This is a functional interface whose functional method is {@link #applyAsDouble(Object)}.
  */
 @FunctionalInterface
-public interface ObjectToDoubleFunction<T> extends ToDoubleFunction<T> {
+public interface ObjToDoubleFunction<T> extends ToDoubleFunction<T> {
 }

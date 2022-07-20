@@ -11,10 +11,10 @@
 package com.github.tommyettinger.function;
 
 /**
- * A two argument Predicate that takes a primitive char and
+ * A two argument Predicate that takes a primitive double and
  * type T as the arguments.
  */
 @FunctionalInterface
-public interface CharObjectPredicate<T> {
-    boolean test(char value, T object);
+public interface DoubleObjPredicate<T> {
+    boolean test(double value, T object);
 }

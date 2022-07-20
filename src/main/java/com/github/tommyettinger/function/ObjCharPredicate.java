@@ -12,9 +12,9 @@ package com.github.tommyettinger.function;
 
 /**
  * A two argument Predicate that takes type T and
- * a primitive int as the arguments.
+ * a primitive char as the arguments.
  */
 @FunctionalInterface
-public interface ObjectIntPredicate<T> {
-    boolean test(T object, int value);
+public interface ObjCharPredicate<T> {
+    boolean test(T object, char value);
 }

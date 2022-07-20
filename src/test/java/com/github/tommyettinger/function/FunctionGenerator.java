@@ -42,10 +42,10 @@ public class FunctionGenerator {
             DoubleUnaryOperator.class, "DoubleToDoubleFunction",
             IntUnaryOperator.class, "IntToIntFunction",
             LongUnaryOperator.class, "LongToLongFunction",
-            ToDoubleFunction.class, "ObjectToDoubleFunction",
-            ToIntFunction.class, "ObjectToIntFunction",
-            ToLongFunction.class, "ObjectToLongFunction",
-            UnaryOperator.class, "ObjectToSameFunction"
+            ToDoubleFunction.class, "ObjToDoubleFunction",
+            ToIntFunction.class, "ObjToIntFunction",
+            ToLongFunction.class, "ObjToLongFunction",
+            UnaryOperator.class, "ObjToSameFunction"
     );
     private static final Modifier[] mods = {Modifier.PUBLIC};
     private static final Modifier[] emptyMods = {};

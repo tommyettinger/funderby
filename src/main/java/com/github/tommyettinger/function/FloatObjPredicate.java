@@ -11,10 +11,10 @@
 package com.github.tommyettinger.function;
 
 /**
- * A two argument Predicate that takes a primitive double and
+ * A two argument Predicate that takes a primitive float and
  * type T as the arguments.
  */
 @FunctionalInterface
-public interface DoubleObjectPredicate<T> {
-    boolean test(double value, T object);
+public interface FloatObjPredicate<T> {
+    boolean test(float value, T object);
 }

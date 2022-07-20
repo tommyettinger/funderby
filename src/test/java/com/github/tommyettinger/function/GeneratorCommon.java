@@ -61,7 +61,7 @@ public class GeneratorCommon {
             INT,     "Int",
             LONG,    "Long",
             SHORT,   "Short",
-            OBJECT,  "Object");
+            OBJECT,  "Obj");
 
     public static final LinkedHashMap<TypeName, String> FUNCTION_RETURN_NAMES = map(
             BOOLEAN, "applyAsBoolean",

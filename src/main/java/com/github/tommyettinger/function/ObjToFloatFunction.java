@@ -2,17 +2,17 @@ package com.github.tommyettinger.function;
 
 /**
  * Represents an operation on a single {@code T}-valued operand that produces
- * a {@code byte}-valued result.
+ * a {@code float}-valued result.
  * <br>
- * This is a functional interface whose functional method is {@link #applyAsByte(Object)}.
+ * This is a functional interface whose functional method is {@link #applyAsFloat(Object)}.
  */
 @FunctionalInterface
-public interface ObjectToByteFunction<T> {
+public interface ObjToFloatFunction<T> {
   /**
    * Applies this function to the given argument.
    *
    * @param value the function argument
    * @return the function result
    */
-  byte applyAsByte(T value);
+  float applyAsFloat(T value);
 }

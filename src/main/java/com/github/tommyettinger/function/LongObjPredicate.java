@@ -11,10 +11,10 @@
 package com.github.tommyettinger.function;
 
 /**
- * A two argument Predicate that takes a primitive byte and
+ * A two argument Predicate that takes a primitive long and
  * type T as the arguments.
  */
 @FunctionalInterface
-public interface ByteObjectPredicate<T> {
-    boolean test(byte value, T object);
+public interface LongObjPredicate<T> {
+    boolean test(long value, T object);
 }

@@ -9,5 +9,5 @@ import java.util.function.UnaryOperator;
  * This is a functional interface whose functional method is {@link #apply(Object)}.
  */
 @FunctionalInterface
-public interface ObjectToSameFunction<T> extends UnaryOperator<T> {
+public interface ObjToSameFunction<T> extends UnaryOperator<T> {
 }

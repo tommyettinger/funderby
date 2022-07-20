@@ -15,6 +15,6 @@ package com.github.tommyettinger.function;
  * a primitive short as the arguments.
  */
 @FunctionalInterface
-public interface ObjectShortPredicate<T> {
+public interface ObjShortPredicate<T> {
     boolean test(T object, short value);
 }

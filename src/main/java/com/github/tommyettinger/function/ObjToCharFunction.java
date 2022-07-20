@@ -7,7 +7,7 @@ package com.github.tommyettinger.function;
  * This is a functional interface whose functional method is {@link #applyAsChar(Object)}.
  */
 @FunctionalInterface
-public interface ObjectToCharFunction<T> {
+public interface ObjToCharFunction<T> {
   /**
    * Applies this function to the given argument.
    *

@@ -11,10 +11,10 @@
 package com.github.tommyettinger.function;
 
 /**
- * A two argument Predicate that takes a primitive long and
- * type T as the arguments.
+ * A two argument Predicate that takes type T and
+ * a primitive long as the arguments.
  */
 @FunctionalInterface
-public interface LongObjectPredicate<T> {
-    boolean test(long value, T object);
+public interface ObjLongPredicate<T> {
+    boolean test(T object, long value);
 }

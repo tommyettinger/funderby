@@ -11,10 +11,10 @@
 package com.github.tommyettinger.function;
 
 /**
- * A two argument Predicate that takes type T and
- * a primitive boolean as the arguments.
+ * A two argument Predicate that takes a primitive int and
+ * type T as the arguments.
  */
 @FunctionalInterface
-public interface ObjectBooleanPredicate<T> {
-    boolean test(T object, boolean value);
+public interface IntObjPredicate<T> {
+    boolean test(int value, T object);
 }

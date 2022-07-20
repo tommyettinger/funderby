@@ -11,10 +11,10 @@
 package com.github.tommyettinger.function;
 
 /**
- * A two argument Predicate that takes a primitive boolean and
+ * A two argument Predicate that takes a primitive short and
  * type T as the arguments.
  */
 @FunctionalInterface
-public interface BooleanObjectPredicate<T> {
-    boolean test(boolean value, T object);
+public interface ShortObjPredicate<T> {
+    boolean test(short value, T object);
 }

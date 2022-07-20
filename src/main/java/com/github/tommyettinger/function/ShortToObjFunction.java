@@ -1,18 +1,18 @@
 package com.github.tommyettinger.function;
 
 /**
- * Represents an operation on a single {@code boolean}-valued operand that produces
+ * Represents an operation on a single {@code short}-valued operand that produces
  * a {@code R}-valued result.
  * <br>
- * This is a functional interface whose functional method is {@link #apply(boolean)}.
+ * This is a functional interface whose functional method is {@link #apply(short)}.
  */
 @FunctionalInterface
-public interface BooleanToObjectFunction<R> {
+public interface ShortToObjFunction<R> {
   /**
    * Applies this function to the given argument.
    *
    * @param value the function argument
    * @return the function result
    */
-  R apply(boolean value);
+  R apply(short value);
 }

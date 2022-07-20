@@ -9,5 +9,5 @@ import java.util.function.ToIntFunction;
  * This is a functional interface whose functional method is {@link #applyAsInt(Object)}.
  */
 @FunctionalInterface
-public interface ObjectToIntFunction<T> extends ToIntFunction<T> {
+public interface ObjToIntFunction<T> extends ToIntFunction<T> {
 }

@@ -12,9 +12,9 @@ package com.github.tommyettinger.function;
 
 /**
  * A two argument Predicate that takes type T and
- * a primitive byte as the arguments.
+ * a primitive float as the arguments.
  */
 @FunctionalInterface
-public interface ObjectBytePredicate<T> {
-    boolean test(T object, byte value);
+public interface ObjFloatPredicate<T> {
+    boolean test(T object, float value);
 }

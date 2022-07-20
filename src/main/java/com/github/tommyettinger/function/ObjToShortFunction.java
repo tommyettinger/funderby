@@ -7,7 +7,7 @@ package com.github.tommyettinger.function;
  * This is a functional interface whose functional method is {@link #applyAsShort(Object)}.
  */
 @FunctionalInterface
-public interface ObjectToShortFunction<T> {
+public interface ObjToShortFunction<T> {
   /**
    * Applies this function to the given argument.
    *
