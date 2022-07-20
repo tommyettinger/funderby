@@ -1,6 +1,8 @@
 package com.github.tommyettinger.function;
 
+import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeVariableName;
 
 import java.util.LinkedHashMap;
 
@@ -40,6 +42,18 @@ public class GeneratorCommon {
         return lhm;
     }
 
+    public static final TypeName[] TYPES = {
+            BOOLEAN,
+            BYTE,
+            CHAR,
+            DOUBLE,
+            FLOAT,
+            INT,
+            LONG,
+            SHORT,
+            OBJECT
+    };
+
     public static final LinkedHashMap<TypeName, String> TITLE_NAMES = map(
             BOOLEAN, "Boolean",
             BYTE,    "Byte",
@@ -60,5 +74,5 @@ public class GeneratorCommon {
             INT,     "int",
             LONG,    "long",
             SHORT,   "short",
-            OBJECT,  "!!!");
+            OBJECT,  "T");
 }
