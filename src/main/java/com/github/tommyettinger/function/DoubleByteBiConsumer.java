@@ -1,8 +1,8 @@
 package com.github.tommyettinger.function;
 
 /**
- * Represents an operation that accepts two input arguments and returns no
- * result.  This is the two-arity specialization of {@link Consumer}.
+ * Represents an operation that accepts
+ * two input arguments and returns no result.
  * <br>
  * This is a functional interface
  * whose functional method is {@link #accept(double, byte)}.
@@ -15,5 +15,5 @@ public interface DoubleByteBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  byte apply(double first, byte second);
+  byte accept(double first, byte second);
 }

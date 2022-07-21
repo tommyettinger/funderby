@@ -73,8 +73,8 @@ public class BiConsumerGenerator {
                         tb.addSuperinterface(existing);
                     tb.addAnnotation(FunctionalInterface.class);
                     tb.addJavadoc(
-                            "Represents an operation that accepts two input arguments and returns no\n" +
-                                    "result.  This is the two-arity specialization of {@link Consumer}.\n" +
+                            "Represents an operation that accepts\n" +
+                                    "two input arguments and returns no result.\n" +
                                     "<br>\n" +
                                     "This is a functional interface\n" +
                                     "whose functional method is {@link #accept($1T, $2T)}.", arg0, arg1
@@ -91,13 +91,13 @@ public class BiConsumerGenerator {
                             .addModifiers(mods).addTypeVariables(generics);
                     tb.addAnnotation(FunctionalInterface.class);
                     tb.addJavadoc(
-                            "Represents an operation that accepts two input arguments and returns no\n" +
-                                    "result.  This is the two-arity specialization of {@link Consumer}.\n" +
+                            "Represents an operation that accepts\n" +
+                                    "two input arguments and returns no result.\n" +
                                     "<br>\n" +
                                     "This is a functional interface\n" +
                                     "whose functional method is {@link #accept($1T, $2T)}.", arg0, arg1
                     );
-                    MethodSpec.Builder mb = MethodSpec.methodBuilder("apply")
+                    MethodSpec.Builder mb = MethodSpec.methodBuilder("accept")
                             .addParameter(fst, "first", emptyMods).addParameter(snd, "second", emptyMods).addModifiers(interfaceMods).returns(snd);
                     mb.addJavadoc(
                             "Performs this operation on the given arguments.\n" +

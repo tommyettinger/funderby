@@ -1,8 +1,8 @@
 package com.github.tommyettinger.function;
 
 /**
- * Represents an operation that accepts two input arguments and returns no
- * result.  This is the two-arity specialization of {@link Consumer}.
+ * Represents an operation that accepts
+ * two input arguments and returns no result.
  * <br>
  * This is a functional interface
  * whose functional method is {@link #accept(char, long)}.
@@ -15,5 +15,5 @@ public interface CharLongBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  long apply(char first, long second);
+  long accept(char first, long second);
 }

@@ -1,8 +1,8 @@
 package com.github.tommyettinger.function;
 
 /**
- * Represents an operation that accepts two input arguments and returns no
- * result.  This is the two-arity specialization of {@link Consumer}.
+ * Represents an operation that accepts
+ * two input arguments and returns no result.
  * <br>
  * This is a functional interface
  * whose functional method is {@link #accept(boolean, double)}.
@@ -15,5 +15,5 @@ public interface BooleanDoubleBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  double apply(boolean first, double second);
+  double accept(boolean first, double second);
 }
