@@ -25,7 +25,6 @@ apply plugin: 'com.vanniktech.maven.publish'
 // Changing this to 11 may be possible, but anything higher will restrict this library to being used on desktop only.
 sourceCompatibility = 1.8
 
-//Obviously, change the next line to match your project name.
 def projectName = 'funderby'
 
 group 'com.github.tommyettinger'
@@ -49,7 +48,7 @@ if (JavaVersion.current().isJava8Compatible()) {
 if(JavaVersion.current().isJava9Compatible()) {
     allprojects {
         tasks.withType(JavaCompile) {
-            options.release.set(8) // LWJGL3 needs Java 8 starting in libGDX 1.11.0, which forces tests to use Java 8 or higher.
+            options.release.set(8)
         }
     }
 }
@@ -84,8 +83,6 @@ dependencies {
 
     testImplementation "junit:junit:4.13.2"
 
-    // Should be uncommented if you target Java 8, I think.
-    // Should stay commented out if you target Java 7 (the default).
     //testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.8.2"
 
     constraints {
