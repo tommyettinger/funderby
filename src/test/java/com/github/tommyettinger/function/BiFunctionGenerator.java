@@ -15,7 +15,7 @@ import static com.squareup.javapoet.TypeName.*;
 
 /**
  * We're only generating BiFunctions that take the same type for both arguments. Having all combinations of, for
- * instance, ByteShortToBooleanBiFunction... would be bad.
+ * instance, ByteShortToFloatBiFunction... would be bad.
  */
 public class BiFunctionGenerator {
 
@@ -34,13 +34,13 @@ public class BiFunctionGenerator {
     );
 
     public static final LinkedHashMap<Class<?>, String> NAME_CHANGES = map(
-            DoubleBinaryOperator.class, "DoubleDoubleToDoubleFunction",
-            IntBinaryOperator.class, "IntIntToIntFunction",
-            LongBinaryOperator.class, "LongLongToLongFunction",
-            ToDoubleBiFunction.class, "ObjObjToDoubleFunction",
-            ToIntBiFunction.class, "ObjObjToIntFunction",
-            ToLongBiFunction.class, "ObjObjToLongFunction",
-            BiFunction.class, "ObjObjToObjFunction"
+            DoubleBinaryOperator.class, "DoubleDoubleToDoubleBiFunction",
+            IntBinaryOperator.class, "IntIntToIntBiFunction",
+            LongBinaryOperator.class, "LongLongToLongBiFunction",
+            ToDoubleBiFunction.class, "ObjObjToDoubleBiFunction",
+            ToIntBiFunction.class, "ObjObjToIntBiFunction",
+            ToLongBiFunction.class, "ObjObjToLongBiFunction",
+            BiFunction.class, "ObjObjToObjBiFunction"
     );
     private static final Modifier[] mods = {Modifier.PUBLIC};
     private static final Modifier[] emptyMods = {};
@@ -51,6 +51,8 @@ public class BiFunctionGenerator {
         for(TypeName arg0 : TYPES){
             LinkedHashMap<TypeName, Class<?>> outerEx = EXISTING_FUNCTIONS.get(arg0);
             for(TypeName retType : TYPES) {
+                if(retType.equals(BOOLEAN))
+                    continue; // these are predicates
                 TypeName ret, fst = arg0, snd = arg0;
                 ArrayDeque<TypeVariableName> generics = new ArrayDeque<>(2);
                 if(!arg0.isPrimitive()) {
@@ -106,7 +108,7 @@ public class BiFunctionGenerator {
                     System.out.println(arg0 + " " + arg0 + " returning " + retType + " already has a good interface." );
                 }
                 else {
-                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(retType) + "Function")
+                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(retType) + "BiFunction")
                             .addModifiers(mods).addTypeVariables(generics);
                     tb.addAnnotation(FunctionalInterface.class);
                     tb.addJavadoc(

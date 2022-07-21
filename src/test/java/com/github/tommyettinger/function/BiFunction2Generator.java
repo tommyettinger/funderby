@@ -15,7 +15,7 @@ import static com.squareup.javapoet.TypeName.*;
 
 /**
  * We're only generating BiFunctions that take the same type for the second argument and the return type. Having all
- * combinations of, for instance, ByteShortToBooleanBiFunction... would be bad.
+ * combinations of, for instance, ByteShortToFloatBiFunction... would be bad.
  */
 public class BiFunction2Generator {
 
@@ -32,6 +32,8 @@ public class BiFunction2Generator {
 
                 if (arg0.equals(retType))
                     continue;
+                if(retType.equals(BOOLEAN))
+                    continue; // these are predicates
 
                 TypeName ret, fst = arg0, snd = retType;
                 ArrayDeque<TypeVariableName> generics = new ArrayDeque<>(2);
@@ -48,7 +50,7 @@ public class BiFunction2Generator {
                     ret = retType;
                 Path outPath = Paths.get("src-gen/main/java");
 
-                TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + TITLE_NAMES.get(retType) + "To" + TITLE_NAMES.get(retType) + "Function")
+                TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + TITLE_NAMES.get(retType) + "To" + TITLE_NAMES.get(retType) + "BiFunction")
                         .addModifiers(mods).addTypeVariables(generics);
                 tb.addAnnotation(FunctionalInterface.class);
                 tb.addJavadoc(
