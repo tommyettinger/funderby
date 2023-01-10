@@ -45,19 +45,19 @@ is a ticking time bomb in actual use.
 Via Gradle,
 
 ```groovy
-api "com.github.tommyettinger:funderby:0.0.1"
+api "com.github.tommyettinger:funderby:0.0.2"
 ```
 
 If you use GWT, you also need
 
 ```groovy
-api "com.github.tommyettinger:funderby:0.0.1:sources"
+api "com.github.tommyettinger:funderby:0.0.2:sources"
 ```
 
 And in your main .gwt.xml file,
 
 ```
-<inherits name="funderby" />
+<inherits name="com.github.tommyettinger.funderby" />
 ```
 
 If you use Maven, the dependency is:
@@ -66,7 +66,7 @@ If you use Maven, the dependency is:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>funderby</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 </dependency>
 ```
 
@@ -76,7 +76,7 @@ With this required if you use GWT, plus the above .gwt.xml line:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>funderby</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <classifier>sources</classifier>
 </dependency>
 ```
