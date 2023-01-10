@@ -7,5 +7,5 @@
      <inherits name="funderby" />
 -->
 <module>
-    <source path="com.github.tommyettinger.fun"/>
+    <source path="com.github.tommyettinger.function"/>
 </module>
