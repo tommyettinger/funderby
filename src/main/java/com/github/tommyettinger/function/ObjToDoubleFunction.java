@@ -1,13 +1,21 @@
 package com.github.tommyettinger.function;
 
-import java.util.function.ToDoubleFunction;
-
 /**
  * Represents an operation on a single {@code T}-valued operand that produces
  * a {@code double}-valued result.
  * <br>
+ * This is identical to {@code ToDoubleFunction} in Java 8, and is present here so environments
+ * that support lambdas but not Java 8 APIs (such as RoboVM) can use it.
+ * <br>
  * This is a functional interface whose functional method is {@link #applyAsDouble(Object)}.
  */
 @FunctionalInterface
-public interface ObjToDoubleFunction<T> extends ToDoubleFunction<T> {
+public interface ObjToDoubleFunction<T> {
+  /**
+   * Applies this function to the given argument.
+   *
+   * @param value the function argument
+   * @return the function result
+   */
+  double applyAsDouble(T value);
 }

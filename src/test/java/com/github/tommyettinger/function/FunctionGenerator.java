@@ -15,7 +15,9 @@ import static com.squareup.javapoet.TypeName.*;
 
 public class FunctionGenerator {
 
-    public static final LinkedHashMap<TypeName, LinkedHashMap<TypeName, Class<?>>> EXISTING_FUNCTIONS = map(
+    public static final LinkedHashMap<TypeName, LinkedHashMap<TypeName, Class<?>>> EXISTING_FUNCTIONS =
+//            new LinkedHashMap<>();
+            map(
             DOUBLE, map(
                     DOUBLE, DoubleUnaryOperator.class,
                     INT, DoubleToIntFunction.class,
@@ -56,6 +58,8 @@ public class FunctionGenerator {
         for(TypeName arg0 : TYPES){
             LinkedHashMap<TypeName, Class<?>> outerEx = EXISTING_FUNCTIONS.get(arg0);
             for(TypeName retType : TYPES) {
+                if(retType.equals(BOOLEAN))
+                    continue; // this is a predicate; handle these separately.
                 TypeName ret, fst = arg0;
                 ArrayDeque<TypeVariableName> generics = new ArrayDeque<>(2);
                 if(!arg0.isPrimitive()) {
@@ -87,26 +91,73 @@ public class FunctionGenerator {
                 }
 
                 Path outPath = Paths.get("src-gen/main/java");
+//                if(rename != null){
+//                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(rename).addModifiers(mods).addTypeVariables(generics);
+//                    if(!generics.isEmpty())
+//                        tb.addSuperinterface(ParameterizedTypeName.get(replacing, generics.toArray(new TypeName[0])));
+//                    else
+//                        tb.addSuperinterface(existing);
+//                    tb.addAnnotation(FunctionalInterface.class);
+//                    tb.addJavadoc(
+//                            "Represents an operation on a single {@code $1T}-valued operand that produces\n" +
+//                            "a {@code $2T}-valued result.\n" +
+//                            "<br>\n" +
+//                            "This is a functional interface whose functional method is {@link #$3L($4T)}.",
+//                            fst, ret, FUNCTION_RETURN_NAMES.get(retType), arg0
+//                    );
+//                    JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
+//                            .writeTo(outPath);
+//                }
+//                else if(outerEx != null && existing != null){
+//                    // here we already have a well-named functional interface in the JDK; skip this.
+//                    System.out.println(arg0 + " returning " + retType + " already has a good interface." );
+//                }
                 if(rename != null){
                     TypeSpec.Builder tb = TypeSpec.interfaceBuilder(rename).addModifiers(mods).addTypeVariables(generics);
-                    if(!generics.isEmpty())
-                        tb.addSuperinterface(ParameterizedTypeName.get(replacing, generics.toArray(new TypeName[0])));
-                    else
-                        tb.addSuperinterface(existing);
                     tb.addAnnotation(FunctionalInterface.class);
                     tb.addJavadoc(
                             "Represents an operation on a single {@code $1T}-valued operand that produces\n" +
                             "a {@code $2T}-valued result.\n" +
                             "<br>\n" +
+                            "This is identical to {@code $5L} in Java 8, and is present here so environments\n" +
+                            "that support lambdas but not Java 8 APIs (such as RoboVM) can use it.\n" +
+                            "<br>\n" +
                             "This is a functional interface whose functional method is {@link #$3L($4T)}.",
-                            fst, ret, FUNCTION_RETURN_NAMES.get(retType), arg0
+                            fst, ret, FUNCTION_RETURN_NAMES.get(retType), arg0, replacing.simpleName()
                     );
+                    MethodSpec.Builder mb = MethodSpec.methodBuilder(FUNCTION_RETURN_NAMES.get(retType))
+                            .addParameter(fst, "value", emptyMods).addModifiers(interfaceMods).returns(ret);
+                    mb.addJavadoc("Applies this function to the given argument.\n" +
+                            "\n" +
+                            "@param value the function argument\n" +
+                            "@return the function result\n");
+                    tb.addMethod(mb.build());
                     JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
                             .writeTo(outPath);
                 }
                 else if(outerEx != null && existing != null){
-                    // here we already have a well-named functional interface in the JDK; skip this.
-                    System.out.println(arg0 + " returning " + retType + " already has a good interface." );
+                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(retType) + "Function")
+                            .addModifiers(mods).addTypeVariables(generics);
+                    tb.addAnnotation(FunctionalInterface.class);
+                    tb.addJavadoc(
+                            "Represents an operation on a single {@code $1T}-valued operand that produces\n" +
+                                    "a {@code $2T}-valued result.\n" +
+                                    "<br>\n" +
+                                    "This is identical to {@code $5L} in Java 8, and is present here so environments\n" +
+                                    "that support lambdas but not Java 8 APIs (such as RoboVM) can use it.\n" +
+                                    "<br>\n" +
+                                    "This is a functional interface whose functional method is {@link #$3L($4T)}.",
+                            fst, ret, FUNCTION_RETURN_NAMES.get(retType), arg0, replacing
+                    );
+                    MethodSpec.Builder mb = MethodSpec.methodBuilder(FUNCTION_RETURN_NAMES.get(retType))
+                            .addParameter(fst, "value", emptyMods).addModifiers(interfaceMods).returns(ret);
+                    mb.addJavadoc("Applies this function to the given argument.\n" +
+                            "\n" +
+                            "@param value the function argument\n" +
+                            "@return the function result\n");
+                    tb.addMethod(mb.build());
+                    JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
+                            .writeTo(outPath);
                 }
                 else {
                     TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(retType) + "Function")
