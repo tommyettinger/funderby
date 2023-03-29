@@ -30,11 +30,11 @@ public class SupplierGenerator {
         String packageName = "com.github.tommyettinger.function";
         for (TypeName retType : TYPES) {
             Class<?> existing = EXISTING_FUNCTIONS.get(retType);
-            if (existing != null) {
-                // here we already have a well-named functional interface in the JDK; skip this.
-                System.out.println("supplier returning " + retType + " already has a good interface.");
-                continue;
-            }
+//            if (existing != null) {
+//                 here we already have a well-named functional interface in the JDK; skip this.
+//                System.out.println("supplier returning " + retType + " already has a good interface.");
+//                continue;
+//            }
             TypeName ret = retType;
 
             Path outPath = Paths.get("src-gen/main/java");
@@ -42,12 +42,25 @@ public class SupplierGenerator {
             TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(retType) + "Supplier")
                     .addModifiers(mods);
             tb.addAnnotation(FunctionalInterface.class);
-            tb.addJavadoc(
-                    "Represents a supplier of {@code $1T}-valued results.\n" +
-                            "<br>\n" +
-                            "This is a functional interface whose functional method is {@link #$2L()}.",
-                    ret, SUPPLIER_RETURN_NAMES.get(retType)
-            );
+            if(existing != null) {
+                tb.addJavadoc(
+                        "Represents a supplier of {@code $1T}-valued results.\n" +
+                                "<br>\n" +
+                                "This is identical to {@code $3L} in Java 8, and is present here so environments\n" +
+                                "that support lambdas but not Java 8 APIs (such as RoboVM) can use it.\n" +
+                                "<br>\n" +
+                                "This is a functional interface whose functional method is {@link #$2L()}.",
+                        ret, SUPPLIER_RETURN_NAMES.get(retType), existing.getSimpleName()
+                );
+            } else {
+                tb.addJavadoc(
+                        "Represents a supplier of {@code $1T}-valued results.\n" +
+                                "<br>\n" +
+                                "This is a functional interface whose functional method is {@link #$2L()}.",
+                        ret, SUPPLIER_RETURN_NAMES.get(retType)
+                );
+
+            }
             MethodSpec.Builder mb = MethodSpec.methodBuilder(SUPPLIER_RETURN_NAMES.get(retType))
                     .addModifiers(interfaceMods).returns(ret);
             mb.addJavadoc("Gets a result.\n" +
