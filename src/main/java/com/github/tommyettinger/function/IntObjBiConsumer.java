@@ -15,5 +15,5 @@ public interface IntObjBiConsumer<T> {
    * @param first the first input argument
    * @param second the second input argument
    */
-  T accept(int first, T second);
+  void accept(int first, T second);
 }

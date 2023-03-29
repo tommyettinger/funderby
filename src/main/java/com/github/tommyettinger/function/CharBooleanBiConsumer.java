@@ -15,5 +15,5 @@ public interface CharBooleanBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  boolean accept(char first, boolean second);
+  void accept(char first, boolean second);
 }

@@ -15,5 +15,5 @@ public interface ObjFloatBiConsumer<T> {
    * @param first the first input argument
    * @param second the second input argument
    */
-  float accept(T first, float second);
+  void accept(T first, float second);
 }

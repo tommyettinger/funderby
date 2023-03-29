@@ -15,5 +15,5 @@ public interface ByteShortBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  short accept(byte first, short second);
+  void accept(byte first, short second);
 }

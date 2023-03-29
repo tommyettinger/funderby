@@ -15,5 +15,5 @@ public interface FloatByteBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  byte accept(float first, byte second);
+  void accept(float first, byte second);
 }

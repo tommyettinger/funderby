@@ -15,5 +15,5 @@ public interface ObjShortBiConsumer<T> {
    * @param first the first input argument
    * @param second the second input argument
    */
-  short accept(T first, short second);
+  void accept(T first, short second);
 }

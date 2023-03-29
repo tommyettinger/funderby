@@ -15,5 +15,5 @@ public interface FloatShortBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  short accept(float first, short second);
+  void accept(float first, short second);
 }

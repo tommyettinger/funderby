@@ -15,5 +15,5 @@ public interface ShortLongBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  long accept(short first, long second);
+  void accept(short first, long second);
 }

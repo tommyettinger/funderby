@@ -15,5 +15,5 @@ public interface BooleanObjBiConsumer<T> {
    * @param first the first input argument
    * @param second the second input argument
    */
-  T accept(boolean first, T second);
+  void accept(boolean first, T second);
 }

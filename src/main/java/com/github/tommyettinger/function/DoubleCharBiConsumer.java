@@ -15,5 +15,5 @@ public interface DoubleCharBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  char accept(double first, char second);
+  void accept(double first, char second);
 }

@@ -15,5 +15,5 @@ public interface LongByteBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  byte accept(long first, byte second);
+  void accept(long first, byte second);
 }

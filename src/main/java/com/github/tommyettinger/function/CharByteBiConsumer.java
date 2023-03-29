@@ -15,5 +15,5 @@ public interface CharByteBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  byte accept(char first, byte second);
+  void accept(char first, byte second);
 }

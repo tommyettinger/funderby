@@ -15,5 +15,5 @@ public interface FloatCharBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  char accept(float first, char second);
+  void accept(float first, char second);
 }

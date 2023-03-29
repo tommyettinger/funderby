@@ -15,5 +15,5 @@ public interface LongFloatBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  float accept(long first, float second);
+  void accept(long first, float second);
 }

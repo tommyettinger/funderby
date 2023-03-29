@@ -15,5 +15,5 @@ public interface ByteIntBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  int accept(byte first, int second);
+  void accept(byte first, int second);
 }

@@ -66,25 +66,7 @@ public class BiConsumerGenerator {
 
                 Path outPath = Paths.get("src-gen/main/java");
                 if(rename != null){
-                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(rename).addModifiers(mods).addTypeVariables(generics);
-                    if(!generics.isEmpty())
-                        tb.addSuperinterface(ParameterizedTypeName.get(replacing, generics.toArray(new TypeName[0])));
-                    else
-                        tb.addSuperinterface(existing);
-                    tb.addAnnotation(FunctionalInterface.class);
-                    tb.addJavadoc(
-                            "Represents an operation that accepts\n" +
-                                    "two input arguments and returns no result.\n" +
-                                    "<br>\n" +
-                                    "This is a functional interface\n" +
-                                    "whose functional method is {@link #accept($1T, $2T)}.", arg0, arg1
-                    );
-                    JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
-                            .writeTo(outPath);
-                }
-                else if(outerEx != null && existing != null){
-                    // here we already have a well-named functional interface in the JDK; skip this.
-                    System.out.println(arg0 + " returning " + arg1 + " already has a good interface." );
+                    // only happens for ObjObjBiConsumer, which we have special cases for
                 }
                 else {
                     TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + TITLE_NAMES.get(arg1) + "BiConsumer")
@@ -98,7 +80,7 @@ public class BiConsumerGenerator {
                                     "whose functional method is {@link #accept($1T, $2T)}.", arg0, arg1
                     );
                     MethodSpec.Builder mb = MethodSpec.methodBuilder("accept")
-                            .addParameter(fst, "first", emptyMods).addParameter(snd, "second", emptyMods).addModifiers(interfaceMods).returns(snd);
+                            .addParameter(fst, "first", emptyMods).addParameter(snd, "second", emptyMods).addModifiers(interfaceMods).returns(VOID);
                     mb.addJavadoc(
                             "Performs this operation on the given arguments.\n" +
                                     "\n" +

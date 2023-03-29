@@ -15,5 +15,5 @@ public interface LongDoubleBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  double accept(long first, double second);
+  void accept(long first, double second);
 }

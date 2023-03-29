@@ -15,5 +15,5 @@ public interface BooleanFloatBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  float accept(boolean first, float second);
+  void accept(boolean first, float second);
 }

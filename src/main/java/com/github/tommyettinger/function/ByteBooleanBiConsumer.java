@@ -15,5 +15,5 @@ public interface ByteBooleanBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  boolean accept(byte first, boolean second);
+  void accept(byte first, boolean second);
 }

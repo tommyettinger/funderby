@@ -15,5 +15,5 @@ public interface BooleanShortBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  short accept(boolean first, short second);
+  void accept(boolean first, short second);
 }

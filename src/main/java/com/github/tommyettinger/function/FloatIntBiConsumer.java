@@ -15,5 +15,5 @@ public interface FloatIntBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  int accept(float first, int second);
+  void accept(float first, int second);
 }

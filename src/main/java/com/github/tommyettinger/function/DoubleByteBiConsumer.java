@@ -15,5 +15,5 @@ public interface DoubleByteBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  byte accept(double first, byte second);
+  void accept(double first, byte second);
 }

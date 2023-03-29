@@ -15,5 +15,5 @@ public interface LongCharBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  char accept(long first, char second);
+  void accept(long first, char second);
 }

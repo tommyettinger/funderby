@@ -15,5 +15,5 @@ public interface ShortCharBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  char accept(short first, char second);
+  void accept(short first, char second);
 }

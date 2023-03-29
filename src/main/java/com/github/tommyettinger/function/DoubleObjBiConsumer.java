@@ -15,5 +15,5 @@ public interface DoubleObjBiConsumer<T> {
    * @param first the first input argument
    * @param second the second input argument
    */
-  T accept(double first, T second);
+  void accept(double first, T second);
 }

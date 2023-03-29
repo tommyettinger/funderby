@@ -15,5 +15,5 @@ public interface IntBooleanBiConsumer {
    * @param first the first input argument
    * @param second the second input argument
    */
-  boolean accept(int first, boolean second);
+  void accept(int first, boolean second);
 }

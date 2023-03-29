@@ -15,5 +15,5 @@ public interface LongObjBiConsumer<T> {
    * @param first the first input argument
    * @param second the second input argument
    */
-  T accept(long first, T second);
+  void accept(long first, T second);
 }

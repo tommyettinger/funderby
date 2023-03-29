@@ -15,5 +15,5 @@ public interface ObjCharBiConsumer<T> {
    * @param first the first input argument
    * @param second the second input argument
    */
-  char accept(T first, char second);
+  void accept(T first, char second);
 }
