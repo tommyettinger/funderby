@@ -10,19 +10,20 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedHashMap;
-import java.util.function.*;
 
 import static com.github.tommyettinger.function.GeneratorCommon.*;
 import static com.squareup.javapoet.TypeName.*;
 
 public class ConsumerGenerator {
 
-    public static final LinkedHashMap<TypeName, Class<?>> EXISTING_FUNCTIONS = map(
-            DOUBLE, DoubleConsumer.class,
-            INT, IntConsumer.class,
-            LONG, LongConsumer.class,
-            OBJECT, Consumer.class
-    );
+    public static final LinkedHashMap<TypeName, Class<?>> EXISTING_FUNCTIONS =
+            new LinkedHashMap<>();
+//            map(
+//            DOUBLE, DoubleConsumer.class,
+//            INT, IntConsumer.class,
+//            LONG, LongConsumer.class,
+//            OBJECT, Consumer.class
+//    );
 
     private static final Modifier[] mods = {Modifier.PUBLIC};
     private static final Modifier[] emptyMods = {};
