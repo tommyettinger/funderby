@@ -8,7 +8,7 @@ Funderby provides nearly 400 functional interfaces, mostly specialized for primi
 that aren't supported by the standard `java.util.function` interfaces. There are:
 
   - Suppliers that return primitive types,
-  - Single-argument Predicates,
+  - Single-argument and dual-argument Predicates,
   - Single-argument and dual-argument Consumers and BiConsumers,
   - Single-argument Functions that return possibly a different type,
   - Dual-argument BiFunctions that either
@@ -19,6 +19,7 @@ Most of these use a consistent naming format.
 
   - `$TYPE0` `Predicate` takes a $TYPE0 and returns a boolean.
     - If a functional interface returns `boolean` here, it is always a `Predicate`. 
+  - `$TYPE0` `$TYPE1` `Predicate` takes a $TYPE0 and a $TYPE1 and returns a boolean.
   - `$TYPE0` `Supplier` returns a $TYPE0.
   - `$TYPE0` `Consumer` takes a $TYPE0.
   - `$TYPE0` `$TYPE1` `BiConsumer` takes a $TYPE0 and a $TYPE1.
@@ -26,11 +27,13 @@ Most of these use a consistent naming format.
   - `$TYPE0` `$TYPE1` `To` `$TYPE2` `BiFunction` takes a $TYPE0 and a $TYPE1 and returns a $TYPE2.
 
 Types can be `Boolean`, `Byte`, `Char`, `Double`, `Float`, `Int`, `Long`, `Short`, or `Obj`
-(meaning Object, and always a generic type). One exception is `ObjToSameFunction`, which simply
-extends `UnaryOperator` from the JDK because we don't use the term Operator here (you still can,
-though). Some functional interfaces are not really necessary because the JDK already provides
-one with the same name and signature; you should check `java.util.function` first before using
-one of the interfaces here.
+(meaning Object, and always a generic type). Two exceptions are `ObjToSameFunction` and
+`ObjSameBiConsumer`, which only take one generic type parameter because what would be different
+generic type parameters are the same there. Some functional interfaces are not really necessary
+because the JDK already provides one with the same name and signature; this library provides
+duplicates so that platforms like RoboVM can still have functional interface types. On RoboVM,
+you can use lambdas and have them assignable to interfaces like `ObjToObjFunction`, which is
+roughly equivalent to `java.util.function.Function`.
 
 ## Why?
 
@@ -45,13 +48,13 @@ is a ticking time bomb in actual use.
 Via Gradle,
 
 ```groovy
-api "com.github.tommyettinger:funderby:0.0.2"
+api "com.github.tommyettinger:funderby:0.1.0"
 ```
 
 If you use GWT, you also need
 
 ```groovy
-api "com.github.tommyettinger:funderby:0.0.2:sources"
+api "com.github.tommyettinger:funderby:0.1.0:sources"
 ```
 
 And in your main .gwt.xml file,
@@ -66,7 +69,7 @@ If you use Maven, the dependency is:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>funderby</artifactId>
-  <version>0.0.2</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
@@ -76,7 +79,7 @@ With this required if you use GWT, plus the above .gwt.xml line:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>funderby</artifactId>
-  <version>0.0.2</version>
+  <version>0.1.0</version>
   <classifier>sources</classifier>
 </dependency>
 ```
