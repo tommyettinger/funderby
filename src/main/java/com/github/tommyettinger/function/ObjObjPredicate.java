@@ -4,11 +4,14 @@ package com.github.tommyettinger.function;
  * Represents an operation that accepts
  * two input arguments and returns a {@code boolean} result.
  * <br>
+ * This is identical to {@code BiPredicate} in Java 8, and is present here so environments
+ * that support lambdas but not Java 8 APIs (such as RoboVM) can use it.
+ * <br>
  * This is a functional interface
- * whose functional method is {@link #test(float, long)}.
+ * whose functional method is {@link #test(Object, Object)}.
  */
 @FunctionalInterface
-public interface FloatLongPredicate {
+public interface ObjObjPredicate<T, U> {
   /**
    * Evaluates this predicate on the given arguments.
    *
@@ -17,5 +20,5 @@ public interface FloatLongPredicate {
    * @return {@code true} if the input arguments match the predicate,
    * otherwise {@code false}
    */
-  boolean test(float first, long second);
+  boolean test(T first, U second);
 }

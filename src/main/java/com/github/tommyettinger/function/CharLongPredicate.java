@@ -1,19 +1,21 @@
-/*
- * Copyright (c) 2022 Goldman Sachs.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v. 1.0 which accompany this distribution.
- * The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at
- * http://www.eclipse.org/org/documents/edl-v10.php.
- */
-
 package com.github.tommyettinger.function;
 
 /**
- * A two argument Predicate that takes a primitive char and a primitive long as arguments.
+ * Represents an operation that accepts
+ * two input arguments and returns a {@code boolean} result.
+ * <br>
+ * This is a functional interface
+ * whose functional method is {@link #test(char, long)}.
  */
 @FunctionalInterface
 public interface CharLongPredicate {
-    boolean test(char value1, long value2);
+  /**
+   * Evaluates this predicate on the given arguments.
+   *
+   * @param first the first input argument
+   * @param second the second input argument
+   * @return {@code true} if the input arguments match the predicate,
+   * otherwise {@code false}
+   */
+  boolean test(char first, long second);
 }
