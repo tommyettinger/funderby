@@ -16,6 +16,7 @@ import static com.squareup.javapoet.TypeName.*;
 
 public class ConsumerGenerator {
 
+    // I was lazy and did the 4 existing Consumers by hand.
     public static final LinkedHashMap<TypeName, Class<?>> EXISTING_FUNCTIONS =
             new LinkedHashMap<>();
 //            map(

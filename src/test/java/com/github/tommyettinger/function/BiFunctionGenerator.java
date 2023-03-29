@@ -86,26 +86,75 @@ public class BiFunctionGenerator {
                 }
 
                 Path outPath = Paths.get("src-gen/main/java");
+//                if(rename != null){
+//                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(rename).addModifiers(mods).addTypeVariables(generics);
+//                    if(!generics.isEmpty())
+//                        tb.addSuperinterface(ParameterizedTypeName.get(replacing, generics.toArray(new TypeName[0])));
+//                    else
+//                        tb.addSuperinterface(existing);
+//                    tb.addAnnotation(FunctionalInterface.class);
+//                    tb.addJavadoc(
+//                            "Represents an operation on a {@code $1T}-valued operand and a {@code $2T}-valued\n" +
+//                            "operand that produces a {@code $3T}-valued result.\n" +
+//                            "<br>\n" +
+//                            "This is a functional interface whose functional method is {@link #$4L($5T, $5T)}.",
+//                            fst, snd, ret, FUNCTION_RETURN_NAMES.get(retType), arg0
+//                    );
+//                    JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
+//                            .writeTo(outPath);
+//                }
+//                else if(outerEx != null && existing != null){
+//                    // here we already have a well-named functional interface in the JDK; skip this.
+//                    System.out.println(arg0 + " " + arg0 + " returning " + retType + " already has a good interface." );
+//                }
                 if(rename != null){
                     TypeSpec.Builder tb = TypeSpec.interfaceBuilder(rename).addModifiers(mods).addTypeVariables(generics);
-                    if(!generics.isEmpty())
-                        tb.addSuperinterface(ParameterizedTypeName.get(replacing, generics.toArray(new TypeName[0])));
-                    else
-                        tb.addSuperinterface(existing);
                     tb.addAnnotation(FunctionalInterface.class);
                     tb.addJavadoc(
                             "Represents an operation on a {@code $1T}-valued operand and a {@code $2T}-valued\n" +
                             "operand that produces a {@code $3T}-valued result.\n" +
                             "<br>\n" +
+                            "This is identical to {@code $6L} in Java 8, and is present here so environments\n" +
+                            "that support lambdas but not Java 8 APIs (such as RoboVM) can use it.\n" +
+                            "<br>\n" +
                             "This is a functional interface whose functional method is {@link #$4L($5T, $5T)}.",
-                            fst, snd, ret, FUNCTION_RETURN_NAMES.get(retType), arg0
+                            fst, snd, ret, FUNCTION_RETURN_NAMES.get(retType), arg0, replacing.simpleName()
                     );
+                    MethodSpec.Builder mb = MethodSpec.methodBuilder(FUNCTION_RETURN_NAMES.get(retType))
+                            .addParameter(fst, "first", emptyMods).addParameter(snd, "second", emptyMods).addModifiers(interfaceMods).returns(ret);
+                    mb.addJavadoc("Applies this function to the given arguments.\n" +
+                            "\n" +
+                            "@param first the first function argument\n" +
+                            "@param second the second function argument\n" +
+                            "@return the function result\n");
+                    tb.addMethod(mb.build());
                     JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
                             .writeTo(outPath);
                 }
                 else if(outerEx != null && existing != null){
-                    // here we already have a well-named functional interface in the JDK; skip this.
-                    System.out.println(arg0 + " " + arg0 + " returning " + retType + " already has a good interface." );
+                    TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(retType) + "BiFunction")
+                            .addModifiers(mods).addTypeVariables(generics);
+                    tb.addAnnotation(FunctionalInterface.class);
+                    tb.addJavadoc(
+                            "Represents an operation on a {@code $1T}-valued operand and a {@code $2T}-valued\n" +
+                                    "operand that produces a {@code $3T}-valued result.\n" +
+                                    "<br>\n" +
+                                    "This is identical to {@code $6L} in Java 8, and is present here so environments\n" +
+                                    "that support lambdas but not Java 8 APIs (such as RoboVM) can use it.\n" +
+                                    "<br>\n" +
+                                    "This is a functional interface whose functional method is {@link #$4L($5T, $5T)}.",
+                            fst, snd, ret, FUNCTION_RETURN_NAMES.get(retType), arg0, replacing.simpleName()
+                    );
+                    MethodSpec.Builder mb = MethodSpec.methodBuilder(FUNCTION_RETURN_NAMES.get(retType))
+                            .addParameter(fst, "first", emptyMods).addParameter(snd, "second", emptyMods).addModifiers(interfaceMods).returns(ret);
+                    mb.addJavadoc("Applies this function to the given arguments.\n" +
+                            "\n" +
+                            "@param first the first function argument\n" +
+                            "@param second the second function argument\n" +
+                            "@return the function result\n");
+                    tb.addMethod(mb.build());
+                    JavaFile.builder(packageName, tb.build()).skipJavaLangImports(true).build()
+                            .writeTo(outPath);
                 }
                 else {
                     TypeSpec.Builder tb = TypeSpec.interfaceBuilder(TITLE_NAMES.get(arg0) + TITLE_NAMES.get(arg0) + "To" + TITLE_NAMES.get(retType) + "BiFunction")

@@ -147,7 +147,7 @@ public class FunctionGenerator {
                                     "that support lambdas but not Java 8 APIs (such as RoboVM) can use it.\n" +
                                     "<br>\n" +
                                     "This is a functional interface whose functional method is {@link #$3L($4T)}.",
-                            fst, ret, FUNCTION_RETURN_NAMES.get(retType), arg0, replacing
+                            fst, ret, FUNCTION_RETURN_NAMES.get(retType), arg0, replacing.simpleName()
                     );
                     MethodSpec.Builder mb = MethodSpec.methodBuilder(FUNCTION_RETURN_NAMES.get(retType))
                             .addParameter(fst, "value", emptyMods).addModifiers(interfaceMods).returns(ret);
