@@ -1,7 +1,7 @@
 package com.github.tommyettinger.function;
 
 /**
- * Represents an operation that accepts a single {@code Object}-valued argument and
+ * Represents an operation that accepts a single {@code T}-valued argument and
  * returns no result.
  * <br>
  * This is identical to {@code Consumer} in Java 8, and is present here so environments
@@ -10,11 +10,11 @@ package com.github.tommyettinger.function;
  * This is a functional interface whose functional method is {@link #accept(Object)}.
  */
 @FunctionalInterface
-public interface ObjConsumer {
+public interface ObjConsumer<T> {
   /**
    * Performs this operation on the given argument.
    *
    * @param value the input argument
    */
-  void accept(Object value);
+  void accept(T value);
 }

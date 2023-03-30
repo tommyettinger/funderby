@@ -1,7 +1,7 @@
 package com.github.tommyettinger.function;
 
 /**
- * Represents an operation that accepts a single {@code Object}-valued argument and
+ * Represents an operation that accepts a single {@code T}-valued argument and
  * returns a {@code boolean} result.
  * <br>
  * This is identical to {@code Predicate} in Java 8, and is present here so environments
@@ -10,7 +10,7 @@ package com.github.tommyettinger.function;
  * This is a functional interface whose functional method is {@link #test(Object)}.
  */
 @FunctionalInterface
-public interface ObjPredicate {
+public interface ObjPredicate<T> {
   /**
    * Evaluates this predicate on the given argument.
    *
@@ -18,5 +18,5 @@ public interface ObjPredicate {
    * @return {@code true} if the input argument matches the predicate,
    * otherwise {@code false}
    */
-  boolean test(Object value);
+  boolean test(T value);
 }
