@@ -48,13 +48,13 @@ is a ticking time bomb in actual use.
 Via Gradle,
 
 ```groovy
-api "com.github.tommyettinger:funderby:0.1.0"
+api "com.github.tommyettinger:funderby:0.1.1"
 ```
 
 If you use GWT, you also need
 
 ```groovy
-api "com.github.tommyettinger:funderby:0.1.0:sources"
+api "com.github.tommyettinger:funderby:0.1.1:sources"
 ```
 
 And in your main .gwt.xml file,
@@ -69,7 +69,7 @@ If you use Maven, the dependency is:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>funderby</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
@@ -79,7 +79,7 @@ With this required if you use GWT, plus the above .gwt.xml line:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>funderby</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <classifier>sources</classifier>
 </dependency>
 ```
