@@ -1,6 +1,6 @@
 # funderby
 
-Java 8+ functional interfaces for primitive types, partly based on Eclipse-Collections.
+Java 8+ functional interfaces for primitive types.
 
 ## What is it?
 
@@ -11,8 +11,9 @@ that aren't supported by the standard `java.util.function` interfaces. There are
   - Single-argument and dual-argument Predicates,
   - Single-argument and dual-argument Consumers and BiConsumers,
   - Single-argument Functions that return possibly a different type,
-  - Dual-argument BiFunctions that either
+  - Dual-argument BiFunctions that could
     - Take two arguments with one type and return possibly a different type, or that
+    - Take two arguments of different types and return the first type, or
     - Take two arguments of different types and return the second type.
 
 Most of these use a consistent naming format.
@@ -25,6 +26,8 @@ Most of these use a consistent naming format.
   - `$TYPE0` `$TYPE1` `BiConsumer` takes a $TYPE0 and a $TYPE1.
   - `$TYPE0` `To` `$TYPE1` `Function` takes a $TYPE0 and returns a $TYPE1.
   - `$TYPE0` `$TYPE1` `To` `$TYPE2` `BiFunction` takes a $TYPE0 and a $TYPE1 and returns a $TYPE2.
+    - In version 0.1.1 and earlier, $TYPE1 and $TYPE2 are always the same (if primitive) or both Object types.
+    - Starting in version 0.1.2, more types are available, allowing $TYPE2 to instead be the same as $TYPE0.
 
 Types can be `Boolean`, `Byte`, `Char`, `Double`, `Float`, `Int`, `Long`, `Short`, or `Obj`
 (meaning Object, and always a generic type). Two exceptions are `ObjToSameFunction` and
@@ -40,8 +43,7 @@ roughly equivalent to `java.util.function.Function`.
 I found myself redefining primitive-based functional interfaces fairly often, so I decided to
 bite the bullet and make as many functional interfaces as I could. Eclipse-Collections does a
 lot of this work, but it also changes some names in what to me is a counterintuitive way. It
-also uses `java.io.Serializable` without a clear reason to do so, and I feel like Serializable
-is a ticking time bomb in actual use.
+also uses `java.io.Serializable`, and we don't here.
 
 ## How to Get It?
 
@@ -86,7 +88,13 @@ With this required if you use GWT, plus the above .gwt.xml line:
 
 ## License
 
-Licensed under the same license as Eclipse-Collections, the EPL v 1.0 and the EDL v 1.0 .
+Versions 0.1.1 and earlier are licensed under the same license as Eclipse-Collections, the EPL v 1.0 and the EDL v 1.0 .
+
+Versions 0.1.2 and any subsequent versions are licensed under the Apache License, version 2.0 .
+
+The EPL was only chosen because a pre-alpha version was considering copying over interfaces from Eclipse Collections,
+but that turned out not to be the route this library took. Since nearly all of the related code (that is most likely to
+use this library) is Apache-licensed, using the same license as those makes sense.
 
 ## Trivia
 
