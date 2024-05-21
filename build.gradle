@@ -6,7 +6,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.22.0'
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.25.3'
     }
 }
 
@@ -73,7 +73,4 @@ dependencies {
     testImplementation "com.squareup:javapoet:$javapoetVersion"
 
     testImplementation "junit:junit:4.13.2"
-
-    //testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.8.2"
-
 }
