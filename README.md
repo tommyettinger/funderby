@@ -4,7 +4,7 @@ Java 8+ functional interfaces for primitive types.
 
 ## What is it?
 
-Funderby provides nearly 400 functional interfaces, mostly specialized for primitive types
+Funderby provides over 400 functional interfaces, mostly specialized for primitive types
 that aren't supported by the standard `java.util.function` interfaces. There are:
 
   - Suppliers that return primitive types,
@@ -50,13 +50,13 @@ also uses `java.io.Serializable`, and we don't here.
 Via Gradle,
 
 ```groovy
-api "com.github.tommyettinger:funderby:0.1.1"
+api "com.github.tommyettinger:funderby:0.1.2"
 ```
 
 If you use GWT, you also need
 
 ```groovy
-api "com.github.tommyettinger:funderby:0.1.1:sources"
+api "com.github.tommyettinger:funderby:0.1.2:sources"
 ```
 
 And in your main .gwt.xml file,
@@ -71,7 +71,7 @@ If you use Maven, the dependency is:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>funderby</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
 </dependency>
 ```
 
@@ -81,7 +81,7 @@ With this required if you use GWT, plus the above .gwt.xml line:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>funderby</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <classifier>sources</classifier>
 </dependency>
 ```
